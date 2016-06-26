@@ -58,7 +58,7 @@ describe('App', function() {
     });
 
     it('should call `searchYouTube` when app is initialized', function() {
-      console.log(searchYouTubeStub)
+
       expect(searchYouTubeStub.called).to.be.true;
     });
 

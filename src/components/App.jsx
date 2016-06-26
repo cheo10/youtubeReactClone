@@ -6,6 +6,7 @@ class App extends React.Component {
       currentVideo: exampleVideoData[0],
       videos: exampleVideoData
     }
+
   }
 
   onTitleClick(videoObject) {
@@ -14,12 +15,12 @@ class App extends React.Component {
     })
   }
 
-
   componentDidMount() {
-    searchYouTube({query: "cars", key: YOUTUBE_API_KEY, max: 5}, (data) => {
+    this.props.searchYouTube({query: "cars", key: YOUTUBE_API_KEY, max: 5}, (data) => {
       this.setState({videos: data, currentVideo: data[0]})
     });
   }
+
 
   handleChange(input) {
 
