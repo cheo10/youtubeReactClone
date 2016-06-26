@@ -16,14 +16,35 @@ class App extends React.Component {
 
 
   componentDidMount() {
-   this.props.searchYouTube({query: "cat", key: YOUTUBE_API_KEY, max: 5}, (data) => {this.setState({videos: data, currentVideo: data[0]})});
+    searchYouTube({query: "cars", key: YOUTUBE_API_KEY, max: 5}, (data) => {
+      this.setState({videos: data, currentVideo: data[0]})
+    });
+  }
+
+  handleChange(input) {
+
+    var searchParameters = {
+      key: window.YOUTUBE_API_KEY,
+      query: input,
+      maxResults: 5
+    };
+
+    var result = (data) => {
+      //console.log('result: ', data)
+      this.setState({
+        currentVideo: data[0],
+        videos: data
+      })
+    }
+    searchYouTube(searchParameters, result);
+    //console.log('handleChange working: ', searchParameters)
   }
 
 
   render() {
     return (
       <div>
-        <Nav />
+        <Nav searchHandler={this.handleChange.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
         </div>

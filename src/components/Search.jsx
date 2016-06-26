@@ -1,7 +1,7 @@
-var Search = () => (
+var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" />
-    <button click={window.searchYouTube} className="btn hidden-sm-down">
+    <input className="form-control" type="text" id="searchInput"/>
+    <button onClick={_.debounce(() => {props.searchHandler(document.getElementById("searchInput").value)}, 500)} className="btn hidden-sm-down">
       <span className="glyphicon glyphicon-search"></span>
     </button>
   </div>

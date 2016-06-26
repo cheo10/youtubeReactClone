@@ -58,6 +58,7 @@ describe('App', function() {
     });
 
     it('should call `searchYouTube` when app is initialized', function() {
+      console.log(searchYouTubeStub)
       expect(searchYouTubeStub.called).to.be.true;
     });
 
@@ -66,7 +67,6 @@ describe('App', function() {
 
       var videoEntryTitleElements = scryRenderedDOMComponentsWithClass(app, 'video-list-entry-title');
       videoEntryTitleElements.forEach((videoEntryTitle, i) =>
-      console.log(videoEntryTitleElements.innerHTML)
         expect(videoEntryTitle.innerHTML).to.equal(fakeVideoData[i].snippet.title)
       );
     });
