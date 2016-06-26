@@ -3,16 +3,22 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      currentVideo: exampleVideoData[0]
+      currentVideo: exampleVideoData[0],
+      videos: exampleVideoData
     }
   }
 
   onTitleClick(videoObject) {
-    console.log('clicked!!!!', videoObject);
     this.setState({
       currentVideo: videoObject
-    });
+    })
   }
+
+
+  componentDidMount() {
+   this.props.searchYouTube({query: "cat", key: YOUTUBE_API_KEY, max: 5}, (data) => {this.setState({videos: data, currentVideo: data[0]})});
+  }
+
 
   render() {
     return (
@@ -22,11 +28,12 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={exampleVideoData} click={this.onTitleClick.bind(this)}/>
+          <VideoList videos={this.state.videos} click={this.onTitleClick.bind(this)}/>
         </div>
       </div>
     );
   }
+
 }
 
 
