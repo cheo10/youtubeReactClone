@@ -41,5 +41,5 @@ var searchYouTube = (options, callback) => {
 };
 
 window.searchYouTube = searchYouTube;
-//searchYouTube({key: window.YOUTUBE_API_KEY, query: $('.form-control').val(), max: 5});
+
 
